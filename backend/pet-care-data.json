@@ -1,0 +1,159 @@
+{
+  "pets": [
+    {
+      "id": "pet-1",
+      "name": "Mochi",
+      "species": "dog",
+      "breed": "Shiba Inu",
+      "ageYears": 4,
+      "avatarUrl": "/images/pet-1-mochi.jpg"
+    },
+    {
+      "id": "pet-2",
+      "name": "Luna",
+      "species": "cat",
+      "breed": "Domestic Shorthair",
+      "ageYears": 2,
+      "avatarUrl": "/images/pet-2-luna.jpg"
+    },
+    {
+      "id": "pet-3",
+      "name": "Bailey",
+      "species": "dog",
+      "breed": "Golden Retriever",
+      "ageYears": 6,
+      "avatarUrl": "/images/pet-3-bailey.jpg"
+    },
+    {
+      "id": "pet-4",
+      "name": "Milo",
+      "species": "cat",
+      "breed": "Maine Coon",
+      "ageYears": 3,
+      "avatarUrl": "/images/pet-4-milo.jpg"
+    },
+    {
+      "id": "pet-5",
+      "name": "Coco",
+      "species": "bird",
+      "breed": "Cockatiel",
+      "ageYears": 5,
+      "avatarUrl": "/images/pet-5-coco.jpg"
+    },
+    {
+      "id": "pet-6",
+      "name": "Nala",
+      "species": "dog",
+      "breed": "German Shepherd",
+      "ageYears": 7,
+      "avatarUrl": "/images/pet-6-nala.jpg"
+    },
+    {
+      "id": "pet-7",
+      "name": "Leo",
+      "species": "cat",
+      "breed": "Siamese",
+      "ageYears": 1,
+      "avatarUrl": "/images/pet-7-leo.jpg"
+    },
+    {
+      "id": "pet-8",
+      "name": "Daisy",
+      "species": "rabbit",
+      "breed": "Mini Lop",
+      "ageYears": 2,
+      "avatarUrl": "/images/pet-8-daisy.jpg"
+    },
+    {
+      "id": "pet-9",
+      "name": "Rocky",
+      "species": "dog",
+      "breed": "Boxer",
+      "ageYears": 5,
+      "avatarUrl": "/images/pet-9-rocky.jpg"
+    },
+    {
+      "id": "pet-10",
+      "name": "Willow",
+      "species": "cat",
+      "breed": "Ragdoll",
+      "ageYears": 4,
+      "avatarUrl": "/images/pet-10-willow.jpg"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "petId": "pet-1",
+      "title": "Morning feed",
+      "category": "feeding",
+      "frequency": "daily",
+      "dueTime": "08:00",
+      "notes": "1 cup kibble",
+      "isCompletedToday": false
+    },
+    {
+      "id": "task-2",
+      "petId": "pet-1",
+      "title": "Evening walk",
+      "category": "exercise",
+      "frequency": "daily",
+      "dueTime": "18:30",
+      "notes": "20 minutes",
+      "isCompletedToday": false
+    },
+    {
+      "id": "task-3",
+      "petId": "pet-2",
+      "title": "Refresh water",
+      "category": "hydration",
+      "frequency": "daily",
+      "dueTime": "09:00",
+      "notes": "Clean bowl first",
+      "isCompletedToday": false
+    },
+    {
+      "id": "task-4",
+      "petId": "pet-3",
+      "title": "Brush coat",
+      "category": "grooming",
+      "frequency": "weekly",
+      "dueTime": "19:00",
+      "notes": "Use soft brush",
+      "isCompletedToday": false
+    },
+    {
+      "id": "task-5",
+      "petId": "pet-4",
+      "title": "Litter cleanup",
+      "category": "hygiene",
+      "frequency": "daily",
+      "dueTime": "20:00",
+      "notes": "Scoop and top up litter",
+      "isCompletedToday": false
+    }
+  ],
+  "logs": [
+    {
+      "id": "log-1",
+      "petId": "pet-1",
+      "taskId": "task-1",
+      "completedAt": "2026-05-24T08:03:00.000Z",
+      "note": "Ate full portion"
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-1",
+      "title": "Daily Routine",
+      "description": "Standard weekday routine",
+      "taskIds": ["task-1", "task-2", "task-3"]
+    },
+    {
+      "id": "plan-2",
+      "title": "Weekly Grooming",
+      "description": "Coat and hygiene maintenance",
+      "taskIds": ["task-4", "task-5"]
+    }
+  ]
+}
