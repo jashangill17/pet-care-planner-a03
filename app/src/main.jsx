@@ -10,6 +10,7 @@ import {
 import App from './App.jsx';
 import PetsPage from './pages/PetsPage.jsx';
 import PlansPage from './pages/PlansPage.jsx';
+import PlanDetail from './components/PlanDetail.jsx';
 
 import './index.css';
 
@@ -23,7 +24,10 @@ createRoot(document.getElementById('root')).render(
           <Route index element={<Navigate to="/pets" replace />} />
           <Route path="pets" element={<PetsPage />} />
           <Route path="pets/:petId" element={<PetsPage />} />
-          <Route path="plans" element={<PlansPage />} />
+          {/* Nested route: PlanDetail renders inside PlansPage's Outlet */}
+          <Route path="plans" element={<PlansPage />}>
+            <Route path=":id" element={<PlanDetail />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
