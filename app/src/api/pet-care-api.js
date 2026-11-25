@@ -66,6 +66,29 @@ export const fetchLogsForPet = async (petId) => {
   }
 };
 
+export const fetchPlans = async () => {
+  try {
+    const response = await fetch(`${API_URL}/plans`);
+    const data = await parseResponse(response, 'Failed to fetch plans');
+    return data.plans || [];
+  } catch (error) {
+    throw new Error(`Error fetching plans: ${error.message}`);
+  }
+};
+
+export const fetchPlan = async (planId) => {
+  try {
+    const response = await fetch(`${API_URL}/plans/${planId}`);
+    const data = await parseResponse(response, 'Failed to fetch plan');
+    if (!data?.plan) {
+      throw new Error('Plan data was missing from the response');
+    }
+    return data.plan;
+  } catch (error) {
+    throw new Error(`Error fetching plan: ${error.message}`);
+  }
+};
+
 export const createCareLogEntry = async (petId, payload) => {
   try {
     const response = await fetch(`${API_URL}/pets/${petId}/logs`, {
