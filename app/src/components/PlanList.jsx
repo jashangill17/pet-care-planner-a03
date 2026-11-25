@@ -1,51 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { fetchPlans } from '../api/pet-care-api.js';
+import { usePlans } from '../hooks/usePlans.js';
 
 export default function PlanList() {
-  const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { plans, loading, error, fetchPlans } = usePlans();
 
+  // Load the plans once when the list first renders
   useEffect(() => {
-    let active = true;
-
-    const load = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await fetchPlans();
-        if (active) {
-          setPlans(data);
-        }
-      } catch (err) {
-        if (active) {
-          setError(err.message || 'Failed to load plans');
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
-    };
-
-    load();
-
-    return () => {
-      active = false;
-    };
-  }, []);
+    fetchPlans();
+  }, [fetchPlans]);
 
   return (
     <section aria-label="Plan list" className="space-y-3">
       <h2 className="text-xl font-semibold">Care Plans</h2>
 
-      {loading && <p>Loading plans...</p>}
+      {loading && (
+        <p className="flex items-center gap-2">
+          <span className="loading loading-spinner loading-sm" aria-hidden="true" />
+          Loading plans...
+        </p>
+      )}
 
       {error && (
         <div role="alert" className="alert alert-error">
           <span>{error}</span>
+          <button type="button" className="btn btn-sm" onClick={fetchPlans}>
+            Try again
+          </button>
         </div>
       )}
 

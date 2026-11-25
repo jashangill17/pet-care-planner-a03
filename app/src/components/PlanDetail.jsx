@@ -1,55 +1,48 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchPlan } from '../api/pet-care-api.js';
+import { usePlans } from '../hooks/usePlans.js';
 
 export default function PlanDetail() {
   // :id comes from the /plans/:id route
   const { id } = useParams();
+  const { loading, error, fetchPlanById } = usePlans();
 
   const [plan, setPlan] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Bumping this number re-runs the effect (used by "Try again")
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let active = true;
 
-    const load = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await fetchPlan(id);
-        if (active) {
-          setPlan(data);
-        }
-      } catch (err) {
-        if (active) {
-          setPlan(null);
-          setError(err.message || 'Failed to load plan');
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
+    fetchPlanById(id).then((data) => {
+      // Ignore a slow response if the user has already clicked another plan
+      if (active) {
+        setPlan(data);
       }
-    };
+    });
 
-    load();
-
-    // Ignore a slow response if the user has already clicked another plan
     return () => {
       active = false;
     };
-  }, [id]);
+  }, [id, attempt, fetchPlanById]);
 
   if (loading) {
-    return <p>Loading plan...</p>;
+    return (
+      <p className="flex items-center gap-2">
+        <span className="loading loading-spinner loading-sm" aria-hidden="true" />
+        Loading plan...
+      </p>
+    );
   }
 
   if (error) {
     return (
       <div role="alert" className="alert alert-error">
         <span>{error}</span>
+        <button type="button" className="btn btn-sm" onClick={() => setAttempt((n) => n + 1)}>
+          Try again
+        </button>
       </div>
     );
   }
